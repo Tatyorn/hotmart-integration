@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,10 +15,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
-
-Route::prefix('webhook/')->controller(SubscriptionController::class)->group(function () {
-    Route::any('create', 'store');
-    Route::any('cancel', 'cancel');
-    Route::any('expire', 'expire');
 });

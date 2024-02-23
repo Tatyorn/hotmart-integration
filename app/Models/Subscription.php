@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Subscription extends Model
 {
@@ -15,8 +17,18 @@ class Subscription extends Model
         'purchase_date',
         'expiration_date',
         'cancellation_date',
-        'id_product',
+        'product_id',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
+
+    public function product(): HasOne
+    {
+        return $this->hasOne(Product::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

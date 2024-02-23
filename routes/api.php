@@ -18,3 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::prefix('webhook/')->controller(SubscriptionController::class)->group(function () {
+    Route::any('create', 'store');
+    Route::any('cancel', 'cancel');
+    Route::any('expire', 'expire');
+});
