@@ -11,7 +11,8 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::create('subscriptions', function (Blueprint $table) {
-            $table->unsignedInteger('id')->index();
+            $table->id();
+            $table->unsignedInteger('code');
             $table->foreignId('user_id')->constrained('users');
             $table->string('status');
             $table->dateTime('purchase_date')->nullable();

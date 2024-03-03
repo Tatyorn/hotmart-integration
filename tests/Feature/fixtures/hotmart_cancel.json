@@ -1,0 +1,27 @@
+{
+    "id": "c61989ff-e997-4a18-bfbe-6bf8b7b06f8b",
+    "creation_date": 1709486709461,
+    "event": "SUBSCRIPTION_CANCELLATION",
+    "version": "2.0.0",
+    "data": {
+        "actual_recurrence_value": 64.9,
+        "cancellation_date": 1609181285500,
+        "date_next_charge": 1617105600000,
+        "product": {
+            "id": 1,
+            "name": "Product name com ç e á"
+        },
+        "subscriber": {
+            "code": "0000aaaa",
+            "email": "test@hotmart.com",
+            "name": "User name"
+        },
+        "subscription": {
+            "id": 4148584,
+            "plan": {
+                "id": 123,
+                "name": "Subscription Plan Name"
+            }
+        }
+    }
+}
