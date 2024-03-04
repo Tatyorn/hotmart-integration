@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
-use App\Enums\HotmartStatusEnum;
+use App\Enums\PurchaseStatusEnum;
+use App\Enums\SubscriptionStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Subscription extends Model
@@ -16,18 +18,13 @@ class Subscription extends Model
         'code',
         'user_id',
         'status',
-        'purchase_date',
-        'expiration_date',
         'cancellation_date',
-        'product_id',
         'created_at',
         'updated_at',
     ];
 
     protected $casts = [
-        'status' => HotmartStatusEnum::class,
-        'purchase_date' => 'datetime',
-        'expiration_date' => 'datetime',
+        'status' => SubscriptionStatusEnum::class,
         'cancellation_date' => 'datetime',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
@@ -41,5 +38,10 @@ class Subscription extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function purchases(): HasMany
+    {
+        return $this->hasMany(Purchase::class);
     }
 }

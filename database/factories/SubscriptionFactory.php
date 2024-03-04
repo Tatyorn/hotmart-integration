@@ -14,8 +14,7 @@ class SubscriptionFactory extends Factory
         return [
             'code' => fake()->name,
             'user_id' => User::factory(),
-            'status' => Arr::random(['approved', 'cancelled', 'expired']),
-            'product_id' => Product::factory(),
+            'status' => Arr::random(['active', 'cancelled'])
         ];
     }
 }

@@ -2,15 +2,17 @@
 
 namespace App\Jobs;
 
-use App\Enums\HotmartStatusEnum;
+use App\Enums\PurchaseStatusEnum;
+use App\Enums\SubscriptionStatusEnum;
 use App\Models\Subscription;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\DB;
 
-class CancelHotmartPurchase implements ShouldQueue
+class CancelSubscription implements ShouldQueue
 {
     use Dispatchable;
     use InteractsWithQueue;
@@ -26,11 +28,14 @@ class CancelHotmartPurchase implements ShouldQueue
 
     public function handle(): void
     {
-        Subscription::query()
-            ->where('code', $this->code)
-            ->update([
-                'status' => HotmartStatusEnum::CANCELLED,
+        DB::transaction(function () {
+            $subscription = Subscription::query()->firstWhere('code', $this->code);
+            $subscription->update([
+                'status' => SubscriptionStatusEnum::CANCELLED,
                 'cancellation_date' => $this->cancellation_date,
             ]);
+
+            $subscription->purchases()->update(['status' => PurchaseStatusEnum::CANCELLED]);
+        });
     }
 }

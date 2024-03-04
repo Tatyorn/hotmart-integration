@@ -2,9 +2,11 @@
 
 namespace App\Enums;
 
-enum HotmartStatusEnum: string
+enum PurchaseStatusEnum: string
 {
     case APPROVED = 'approved';
-    case CANCELLED = 'cancelled';
+
     case EXPIRED = 'expired';
+
+    case CANCELLED = 'cancelled';
 }
