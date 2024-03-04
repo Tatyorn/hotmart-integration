@@ -39,7 +39,6 @@
                 </div>
 
                 <div class="mt-16">
-                    {{ $request }}
                 </div>
 
                 <div class="flex justify-center mt-16 px-0 sm:items-center sm:justify-between">
